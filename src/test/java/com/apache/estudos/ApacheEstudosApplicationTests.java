@@ -1,4 +1,4 @@
-package com.apache.apacheestudos;
+package com.apache.estudos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

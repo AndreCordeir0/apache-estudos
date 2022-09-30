@@ -1,4 +1,4 @@
-package com.apache.apacheestudos.routes;
+package com.apache.estudos.routes;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
