@@ -15,7 +15,9 @@
     <description>apache-estudos</description>
     <properties>
         <java.version>17</java.version>
+        <camel.version>3.18.1</camel.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,6 +33,23 @@
             <artifactId>camel-direct-starter</artifactId>
             <version>3.18.1</version>
             <!-- use the same version as your Camel core version -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-rest-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-undertow</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http</artifactId>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

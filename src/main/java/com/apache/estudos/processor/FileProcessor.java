@@ -10,6 +10,6 @@ public class FileProcessor implements  Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-        System.out.println(exchange.getIn().getBody(File.class));
+        System.out.println(exchange.getIn().getHeader("id"));
     }
 }
