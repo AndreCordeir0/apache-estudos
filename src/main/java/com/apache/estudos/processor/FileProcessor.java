@@ -11,5 +11,8 @@ public class FileProcessor implements  Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
         System.out.println(exchange.getIn().getHeader("id"));
+        var a = exchange.getIn().getHeader("id");
+        exchange.getMessage().setBody(exchange.getIn().getHeader("id",String.class));
+
     }
 }
