@@ -15,9 +15,7 @@ public class FileRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        restConfiguration()
-               .port(8081)
-                .bindingMode(RestBindingMode.auto);
+
 
         rest("/integration")
                 //Endpoint que consulta todos os personagens
