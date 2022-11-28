@@ -2,8 +2,10 @@ package com.apache.estudos.routes;
 
 import com.apache.estudos.DAO.JujutsuDAO;
 import com.apache.estudos.aggregationStrategy.CardAggregationStrategy;
+import com.apache.estudos.aggregationStrategy.ContentAggregationStrategy;
 import com.apache.estudos.entity.Jujutsu;
 import com.apache.estudos.processor.CardProcessor;
+import com.apache.estudos.processor.ContentProcessor;
 import com.apache.estudos.processor.JujutsuProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
@@ -22,10 +24,17 @@ public class JujutsuRouter extends RouteBuilder {
     CardProcessor cardProcessor;
 
     @Autowired
+    ContentProcessor contentProcessor;
+
+    @Autowired
     CardAggregationStrategy cardAggregationStrategy;
+
+    @Autowired
+    ContentAggregationStrategy contentAggregationStrategy;
 
     private String CONTEXT = "/jujutsu";
     private String DIRECT_JUJUTSU = "direct:jujutsu";
+    private String DIRECT_CONTENT = "direct:content";
 
     private String DIRECT_CARD= "direct:card";
 
@@ -44,8 +53,9 @@ public class JujutsuRouter extends RouteBuilder {
                 .get("/get-all")
                 .to(DIRECT_JUJUTSU);
 
-        from(DIRECT_JUJUTSU).process(jujutsuProcessor);
+        from(DIRECT_JUJUTSU).process(jujutsuProcessor).enrich(DIRECT_CONTENT,contentAggregationStrategy);
 
+        from(DIRECT_CONTENT).process(contentProcessor);
         from(DIRECT_CARD).process(cardProcessor);
 
     }

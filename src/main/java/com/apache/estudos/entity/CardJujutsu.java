@@ -2,12 +2,14 @@ package com.apache.estudos.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @AllArgsConstructor
@@ -24,34 +26,15 @@ public class CardJujutsu implements Serializable {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NOME")
-    private String nome;
+    @Column(name = "KEY")
+    @Size(max = 100)
+    private String key;
 
-    @Column(name = "INFO")
-    private String info;
+    @Column(name = "VALUE")
+    @Size(max = 100)
+    private String value;
 
-    @Column(name = "JAPANESE_NAME")
-    private String japeneseName;
-
-    @Column(name = "ROMAJI_NAME")
-    private String romajiName;
-
-    @Column(name = "AUTHOR")
-    private String author;
-
-    @Column(name = "PUBLISHER")
-    private String publisher;
-
-    @Column(name = "TAMANHO")
-    private String tamanho;
-
-    @Column(name = "VOLUMES")
-    private String volumes;
-
-    @Column(name = "GENRE")
-    private String genre;
-
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JUJUTSU_KAISEN")
     private Jujutsu idJujutsu;

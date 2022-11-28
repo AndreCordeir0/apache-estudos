@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -30,9 +31,15 @@ private Long id;
 @Size(max = 1000)
 private String sinopse;
 
+@Column(name="CARD_BLOB")
+private byte[] cardUrl;
 
-@JsonManagedReference
+
+
 @OneToMany(cascade = CascadeType.ALL
         ,fetch = FetchType.LAZY,mappedBy = "idJujutsu",orphanRemoval = true)
 private List<CardJujutsu> cards;
+
+@Transient
+private List<Content> contentList = new ArrayList<>();
 }
