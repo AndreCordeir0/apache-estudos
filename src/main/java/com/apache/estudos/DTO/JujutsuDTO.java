@@ -21,7 +21,7 @@ public class JujutsuDTO {
 
     private String cardUrl;
 
-    private List<CardJujutsu> cards;
+    private List<CardJujutsuDTO> cards;
 
-    private List<Content> contentList = new ArrayList<>();
+    private List<ContentDTO> contentList = new ArrayList<>();
 }

@@ -1,7 +1,9 @@
 package com.apache.estudos.processor;
 
 import com.apache.estudos.DAO.ContentDAO;
+import com.apache.estudos.DTO.ContentDTO;
 import com.apache.estudos.entity.Content;
+import com.apache.estudos.mappers.ContentMapper;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ public class ContentProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
         List<Content> listaContents = contentDAO.getAllContents();
-        exchange.getMessage().setBody(listaContents);
+        List<ContentDTO> contentsDTO = ContentMapper.INSTANCE.listContentToDTO(listaContents);
+        exchange.getMessage().setBody(contentsDTO);
     }
 }

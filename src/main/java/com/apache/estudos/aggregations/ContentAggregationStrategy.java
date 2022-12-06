@@ -1,5 +1,7 @@
 package com.apache.estudos.aggregations;
 
+import com.apache.estudos.DTO.ContentDTO;
+import com.apache.estudos.DTO.JujutsuDTO;
 import com.apache.estudos.entity.Content;
 import com.apache.estudos.entity.Jujutsu;
 import org.apache.camel.AggregationStrategy;
@@ -11,8 +13,8 @@ import java.util.List;
 public class ContentAggregationStrategy implements AggregationStrategy {
     @Override
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
-        Jujutsu jujutsu =  oldExchange.getIn().getBody(Jujutsu.class);
-        List<Content> listaContent = newExchange.getMessage().getBody(List.class);
+        JujutsuDTO jujutsu =  oldExchange.getIn().getBody(JujutsuDTO.class);
+        List<ContentDTO> listaContent = newExchange.getMessage().getBody(List.class);
         listaContent.forEach(c->jujutsu.getContentList().add(c));
 
         oldExchange.getIn().setBody(jujutsu);

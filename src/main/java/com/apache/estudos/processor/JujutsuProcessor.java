@@ -1,7 +1,9 @@
 package com.apache.estudos.processor;
 
 import com.apache.estudos.DAO.JujutsuDAO;
+import com.apache.estudos.DTO.JujutsuDTO;
 import com.apache.estudos.entity.Jujutsu;
+import com.apache.estudos.mappers.JujutsuMapper;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,9 @@ public class JujutsuProcessor implements Processor {
         String base64 = Base64.getEncoder().encodeToString(imageInByte);
         jujutsu.setCardUrl(imageInByte);
 
+        JujutsuDTO jujutsuDTO = JujutsuMapper.INSTANCE.jujutsuToDTO(jujutsu);
         exchange.getIn().setHeader("id",jujutsu.getId());
-        exchange.getIn().setBody(jujutsu);
+        exchange.getIn().setBody(jujutsuDTO);
     }
 
 }
