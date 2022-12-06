@@ -1,9 +1,7 @@
 package com.apache.estudos.routes;
 
-import com.apache.estudos.DAO.JujutsuDAO;
-import com.apache.estudos.aggregationStrategy.CardAggregationStrategy;
-import com.apache.estudos.aggregationStrategy.ContentAggregationStrategy;
-import com.apache.estudos.entity.Jujutsu;
+import com.apache.estudos.aggregations.CardAggregationStrategy;
+import com.apache.estudos.aggregations.ContentAggregationStrategy;
 import com.apache.estudos.processor.CardProcessor;
 import com.apache.estudos.processor.ContentProcessor;
 import com.apache.estudos.processor.JujutsuProcessor;
@@ -46,17 +44,17 @@ public class JujutsuRouter extends RouteBuilder {
                 .corsAllowCredentials(true) // <-- Important
                 .corsHeaderProperty("Access-Control-Allow-Origin","*")
                 .corsHeaderProperty("Access-Control-Allow-Headers","Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization")
-                .bindingMode(RestBindingMode.auto);
+        .bindingMode(RestBindingMode.auto);
 
         rest(CONTEXT)
-                //Endpoint que consulta todos os personagens
-                .get("/get-all")
-                .to(DIRECT_JUJUTSU);
+        //Endpoint que consulta todos os personagens
+        .get("/get-all")
+        .to(DIRECT_JUJUTSU);
 
         from(DIRECT_JUJUTSU).process(jujutsuProcessor).enrich(DIRECT_CONTENT,contentAggregationStrategy);
 
         from(DIRECT_CONTENT).process(contentProcessor);
         from(DIRECT_CARD).process(cardProcessor);
 
-    }
-}
+        }
+        }

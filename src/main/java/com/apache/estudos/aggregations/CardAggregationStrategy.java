@@ -1,4 +1,4 @@
-package com.apache.estudos.aggregationStrategy;
+package com.apache.estudos.aggregations;
 
 import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;

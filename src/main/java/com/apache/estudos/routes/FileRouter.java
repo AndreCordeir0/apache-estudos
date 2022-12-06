@@ -1,10 +1,9 @@
 package com.apache.estudos.routes;
 
-import com.apache.estudos.aggregationStrategy.AggregationStrategys;
+import com.apache.estudos.aggregations.AggregationStrategys;
 import com.apache.estudos.processor.FileProcessor;
 import com.apache.estudos.processor.MockProcessor;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

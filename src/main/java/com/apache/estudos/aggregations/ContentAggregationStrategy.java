@@ -1,4 +1,4 @@
-package com.apache.estudos.aggregationStrategy;
+package com.apache.estudos.aggregations;
 
 import com.apache.estudos.entity.Content;
 import com.apache.estudos.entity.Jujutsu;
@@ -11,8 +11,7 @@ import java.util.List;
 public class ContentAggregationStrategy implements AggregationStrategy {
     @Override
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
-        List<Jujutsu> listaJujutsu =  oldExchange.getIn().getBody(List.class);
-        Jujutsu jujutsu = listaJujutsu.get(0);
+        Jujutsu jujutsu =  oldExchange.getIn().getBody(Jujutsu.class);
         List<Content> listaContent = newExchange.getMessage().getBody(List.class);
         listaContent.forEach(c->jujutsu.getContentList().add(c));
 

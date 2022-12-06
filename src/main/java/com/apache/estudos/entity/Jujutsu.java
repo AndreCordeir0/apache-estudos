@@ -34,8 +34,6 @@ private String sinopse;
 @Column(name="CARD_BLOB")
 private byte[] cardUrl;
 
-
-
 @OneToMany(cascade = CascadeType.ALL
         ,fetch = FetchType.LAZY,mappedBy = "idJujutsu",orphanRemoval = true)
 private List<CardJujutsu> cards;
